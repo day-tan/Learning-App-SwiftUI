@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D64F2F5A29AB417300AE944C /* HomeViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64F2F5929AB417300AE944C /* HomeViewRow.swift */; };
 		D66CA99A29AA94DE005FD41D /* LearningApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66CA99929AA94DE005FD41D /* LearningApp.swift */; };
 		D66CA99C29AA94DE005FD41D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66CA99B29AA94DE005FD41D /* HomeView.swift */; };
 		D66CA99E29AA94DF005FD41D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D66CA99D29AA94DF005FD41D /* Assets.xcassets */; };
@@ -18,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D64F2F5929AB417300AE944C /* HomeViewRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewRow.swift; sourceTree = "<group>"; };
+		D64F2F5B29AB49A400AE944C /* Learning-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Learning-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		D66CA99629AA94DE005FD41D /* Learning App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Learning App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D66CA99929AA94DE005FD41D /* LearningApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningApp.swift; sourceTree = "<group>"; };
 		D66CA99B29AA94DE005FD41D /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -59,6 +62,7 @@
 		D66CA99829AA94DE005FD41D /* Learning App */ = {
 			isa = PBXGroup;
 			children = (
+				D64F2F5B29AB49A400AE944C /* Learning-App-Info.plist */,
 				D66CA99929AA94DE005FD41D /* LearningApp.swift */,
 				D66CA9A929AA97E0005FD41D /* Models */,
 				D66CA9A729AA97D2005FD41D /* Views  */,
@@ -82,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				D66CA99B29AA94DE005FD41D /* HomeView.swift */,
+				D64F2F5929AB417300AE944C /* HomeViewRow.swift */,
 			);
 			path = "Views ";
 			sourceTree = "<group>";
@@ -184,6 +189,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D66CA99C29AA94DE005FD41D /* HomeView.swift in Sources */,
+				D64F2F5A29AB417300AE944C /* HomeViewRow.swift in Sources */,
 				D66CA99A29AA94DE005FD41D /* LearningApp.swift in Sources */,
 				D66CA9AC29AA98BD005FD41D /* ContentModel.swift in Sources */,
 				D6D3FDB629AB1382000303D9 /* Models.swift in Sources */,
@@ -317,7 +323,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Learning App/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = "Learning-App-Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -345,7 +351,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Learning App/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = "Learning-App-Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
