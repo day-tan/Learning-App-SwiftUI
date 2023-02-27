@@ -45,6 +45,7 @@ struct HomeViewRow: View {
                     // description
                     Text(description)
                         .font(.caption)
+                        .multilineTextAlignment(.leading)
                         .padding(.bottom, 20)
                     
                     // icons
