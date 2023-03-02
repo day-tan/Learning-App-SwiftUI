@@ -25,6 +25,9 @@ struct ContentView: View {
                         NavigationLink {
                             
                             ContentDetailView()
+                                .onAppear {
+                                    model.beginLesson(lessonIndex: index)
+                                }
                             
                         } label: {
                             
