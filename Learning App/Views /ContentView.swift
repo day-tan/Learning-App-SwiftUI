@@ -22,35 +22,43 @@ struct ContentView: View {
                     
                     ForEach(0..<currentModule.content.lessons.count) { index in
                         
-                        let lesson = currentModule.content.lessons[index]
-                        
-                        // lesson card
-                        ZStack(alignment: .leading) {
+                        NavigationLink {
                             
-                            Rectangle()
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
-                                .shadow(radius: 5)
-                                .frame(height: 68)
+                            ContentDetailView()
                             
-                            HStack(spacing: 30.0) {
+                        } label: {
+                            
+                            let lesson = currentModule.content.lessons[index]
+                            
+                            // lesson card
+                            ZStack(alignment: .leading) {
                                 
-                                Text(String(index + 1))
-                                    .fontWeight(.bold)
+                                Rectangle()
+                                    .foregroundColor(.white)
+                                    .cornerRadius(10)
+                                    .shadow(radius: 5)
+                                    .frame(height: 68)
                                 
-                                VStack(alignment: .leading) {
-                                    Text(lesson.title)
+                                HStack(spacing: 30.0) {
+                                    
+                                    Text(String(index + 1))
                                         .fontWeight(.bold)
-                                    Text(lesson.duration)
+                                    
+                                    VStack(alignment: .leading) {
+                                        Text(lesson.title)
+                                            .fontWeight(.bold)
+                                        Text(lesson.duration)
+                                    }
                                 }
+                                .padding()
                             }
-                            .padding()
+                            .padding(.vertical, 5)
                         }
-                        .padding(.vertical, 5)
                     }
                 }
             }
             .padding()
+            .accentColor(.black)
             .navigationTitle("Learn \(model.currentModule?.category ?? "")")
         }
     }

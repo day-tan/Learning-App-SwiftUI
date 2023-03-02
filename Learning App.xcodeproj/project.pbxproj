@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D615613D29AFA33100DBFF85 /* ContentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D615613C29AFA33100DBFF85 /* ContentDetailView.swift */; };
 		D64F2F5A29AB417300AE944C /* HomeViewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64F2F5929AB417300AE944C /* HomeViewRow.swift */; };
 		D66CA99A29AA94DE005FD41D /* LearningApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66CA99929AA94DE005FD41D /* LearningApp.swift */; };
 		D66CA99C29AA94DE005FD41D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66CA99B29AA94DE005FD41D /* HomeView.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D615613C29AFA33100DBFF85 /* ContentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDetailView.swift; sourceTree = "<group>"; };
 		D64F2F5929AB417300AE944C /* HomeViewRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewRow.swift; sourceTree = "<group>"; };
 		D64F2F5B29AB49A400AE944C /* Learning-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Learning-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		D66CA99629AA94DE005FD41D /* Learning App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Learning App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,6 +92,7 @@
 				D66CA99B29AA94DE005FD41D /* HomeView.swift */,
 				D64F2F5929AB417300AE944C /* HomeViewRow.swift */,
 				D685AD7629AC57D7007ABC36 /* ContentView.swift */,
+				D615613C29AFA33100DBFF85 /* ContentDetailView.swift */,
 			);
 			path = "Views ";
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 				D66CA99C29AA94DE005FD41D /* HomeView.swift in Sources */,
 				D64F2F5A29AB417300AE944C /* HomeViewRow.swift in Sources */,
 				D685AD7729AC57D7007ABC36 /* ContentView.swift in Sources */,
+				D615613D29AFA33100DBFF85 /* ContentDetailView.swift in Sources */,
 				D66CA99A29AA94DE005FD41D /* LearningApp.swift in Sources */,
 				D66CA9AC29AA98BD005FD41D /* ContentModel.swift in Sources */,
 				D6D3FDB629AB1382000303D9 /* Models.swift in Sources */,
