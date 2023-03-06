@@ -9,175 +9,148 @@ import Foundation
 
 class ContentModel: ObservableObject {
     
-    // list of modules
+    // List of modules
     @Published var modules = [Module]()
     
-    // current module
-    @Published var currentModule:Module?
+    // Current module
+    @Published var currentModule: Module?
     var currentModuleIndex = 0
     
-    // current lesson
-    @Published var currentLesson:Lesson?
+    // Current lesson
+    @Published var currentLesson: Lesson?
     var currentLessonIndex = 0
     
-    // current lesson explanation
+    // Current lesson explanation
     @Published var lessonDescription = NSAttributedString()
+    var styleData: Data?
     
-    var styleData:Data?
+    // Current selected content and test
+    @Published var currentContentSelected:Int?
+    
     
     init() {
-        self.getLocalData()
+        
+        getLocalData()
+        
     }
     
-    // MARK: data methods
+    // MARK: - Data methods
+    
     func getLocalData() {
         
-        // get url to the json file
-        let jsonURL = Bundle.main.url(forResource: "data", withExtension: "json")
-        
-        // unwrap jsonURL
-        guard let jsonURL = jsonURL else {
-            return print("No json file found")
-        }
+        // Get a url to the json file
+        let jsonUrl = Bundle.main.url(forResource: "data", withExtension: "json")
         
         do {
+            // Read the file into a data object
+            let jsonData = try Data(contentsOf: jsonUrl!)
             
-            // turn the file into a data object
-            let jsonData = try Data(contentsOf: jsonURL)
-            
-            // decode the json file into an array of modules
+            // Try to decode the json into an array of modules
             let jsonDecoder = JSONDecoder()
             let modules = try jsonDecoder.decode([Module].self, from: jsonData)
             
-            // assign parsed modules to modules property
+            // Assign parsed modules to modules property
             self.modules = modules
         }
-        
-        // log the error
         catch {
-            print("Couldn't parse json data")
+            // TODO log error
+            print("Couldn't parse local data")
         }
         
-        // parse style data
-        let styleURL = Bundle.main.url(forResource: "style", withExtension: "html")
-        
-        // unwrap styleURL
-        guard let styleURL = styleURL else {
-            return print("No html file found")
-        }
+        // Parse the style data
+        let styleUrl = Bundle.main.url(forResource: "style", withExtension: "html")
         
         do {
-            // read the file into a data object
-            let styleData = try Data(contentsOf: styleURL)
             
-            // assign parsed style data to styleData property
+            // Read the file into a data object
+            let styleData = try Data(contentsOf: styleUrl!)
+            
             self.styleData = styleData
         }
-        
         catch {
-            print("Couldn't parse html data")
+            // Log error
+            print("Couldn't parse style data")
         }
+        
     }
     
-    // MARK: module navigation methods
-    func beginModule(moduleID:Int) {
+    // MARK: - Module navigation methods
+    
+    func beginModule(_ moduleid:Int) {
         
-        // find the index for this module id
+        // Find the index for this module id
         for index in 0..<modules.count {
-            if modules[index].id == moduleID {
-                
-                // matching module found
+            
+            if modules[index].id == moduleid {
+            
+                // Found the matching module
                 currentModuleIndex = index
                 break
             }
         }
         
-        // set current module
+        // Set the current module
         currentModule = modules[currentModuleIndex]
     }
     
-    func beginLesson(lessonIndex:Int) {
+    func beginLesson(_ lessonIndex:Int) {
         
-        // check that the lesson index is within range of module lessons
-        if let currentModule = currentModule {
-            if lessonIndex < currentModule.content.lessons.count {
-                currentLessonIndex = lessonIndex
-            }
-            
-            else {
-                currentLessonIndex = 0
-            }
-            
-            // set the current lesson
-            currentLesson = currentModule.content.lessons[currentLessonIndex]
-            
-            // set current description
-            if let currentLesson = currentLesson {
-                lessonDescription = addStyling(htmlString: currentLesson.explanation)
-            }
+        // Check that the lesson index is within range of module lessons
+        if lessonIndex < currentModule!.content.lessons.count {
+            currentLessonIndex = lessonIndex
         }
+        else {
+            currentLessonIndex = 0
+        }
+        
+        // Set the current lesson
+        currentLesson = currentModule!.content.lessons[currentLessonIndex]
+        lessonDescription = addStyling(currentLesson!.explanation)
     }
     
     func nextLesson() {
         
-        // advance the lesson index
+        // Advance the lesson index
         currentLessonIndex += 1
         
-        if let currentModule = currentModule {
+        // Check that it is within range
+        if currentLessonIndex < currentModule!.content.lessons.count {
             
-            // check if it is within range
-            if currentLessonIndex < currentModule.content.lessons.count {
-                
-                // set the current lesson property
-                currentLesson = currentModule.content.lessons[currentLessonIndex]
-                
-                // set current description
-                if let currentLesson = currentLesson {
-                    lessonDescription = addStyling(htmlString: currentLesson.explanation)
-                }
-            }
-            
-            else {
-                
-                // reset the lesson state
-                currentLesson = nil
-                currentLessonIndex = 0
-            }
+            // Set the current lesson property
+            currentLesson = currentModule!.content.lessons[currentLessonIndex]
+            lessonDescription = addStyling(currentLesson!.explanation)
+        }
+        else {
+            // Reset the lesson state
+            currentLessonIndex = 0
+            currentLesson = nil
         }
     }
     
     func hasNextLesson() -> Bool {
         
-        guard let currentModule = currentModule else {
-            return false
-        }
-        // check if there is a next lesson
-        return (currentLessonIndex + 1 < currentModule.content.lessons.count)
+        return (currentLessonIndex + 1 < currentModule!.content.lessons.count)
     }
     
-    // MARK: Code Styling
-    private func addStyling(htmlString:String) -> NSAttributedString {
+    // MARK: - Code Styling
+    
+    private func addStyling(_ htmlString: String) -> NSAttributedString {
         
         var resultString = NSAttributedString()
         var data = Data()
         
-        // add styling data
+        // Add the styling data
         if styleData != nil {
             data.append(styleData!)
         }
         
-        // add html data
+        // Add the html data
         data.append(Data(htmlString.utf8))
         
-        // convert to attributed string
-        do {
-            let attributedString = try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
+        // Convert to attributed string
+        if let attributedString = try? NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
             
             resultString = attributedString
-        }
-        
-        catch {
-            print("Couldn't convert html to attributed string")
         }
         
         return resultString

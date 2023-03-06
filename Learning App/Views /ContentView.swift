@@ -26,7 +26,7 @@ struct ContentView: View {
                             
                             ContentDetailView()
                                 .onAppear {
-                                    model.beginLesson(lessonIndex: index)
+                                    model.beginLesson(index)
                                 }
                             
                         } label: {
