@@ -10,7 +10,7 @@ import AVKit
 
 struct ContentDetailView: View {
     
-    @EnvironmentObject var model:ContentModel
+    @EnvironmentObject var model: ContentModel
     
     var body: some View {
         
@@ -18,17 +18,16 @@ struct ContentDetailView: View {
         let url = URL(string: Constants.videoHostURL + (lesson?.video ?? ""))
         
         VStack {
-            
-            // only show video if there is a valid url
+            // Only show video if we get a valid URL
             if url != nil {
                 VideoPlayer(player: AVPlayer(url: url!))
                     .cornerRadius(10)
             }
             
-            // description
+            // Description
             CodeTextView()
             
-            // show next lesson button, only if there is a next lesson
+            // Show next lesson button, only if there is a next lesson
             if model.hasNextLesson() {
                 
                 Button(action: {
@@ -71,14 +70,13 @@ struct ContentDetailView: View {
                 })
             }
         }
-        .padding()
-        .navigationTitle(lesson?.title ?? "")
+            .padding()
+            .navigationBarTitle(lesson?.title ?? "")
     }
 }
 
 struct ContentDetailView_Previews: PreviewProvider {
     static var previews: some View {
         ContentDetailView()
-            .environmentObject(ContentModel())
     }
 }

@@ -9,14 +9,12 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @EnvironmentObject var model:ContentModel
+    @EnvironmentObject var model: ContentModel
     
     var body: some View {
         
-        NavigationStack {
-            
-            VStack(alignment: .leading) {
-                
+        NavigationView {
+            VStack (alignment: .leading) {
                 Text("What do you want to do today?")
                     .padding(.leading, 20)
                 
@@ -26,28 +24,40 @@ struct HomeView: View {
                         
                         ForEach(model.modules) { module in
                             
-                            VStack(spacing: 20.0) {
+                            VStack (spacing: 20) {
                                 
-                                NavigationLink(destination: ContentView()
-                                    .onAppear {
-                                        model.beginModule(module.id)
-                                    }, tag: module.id, selection: $model.currentContentSelected) {
+                                NavigationLink(
+                                    destination:
+                                        ContentView()
+                                        .onAppear(perform: {
+                                            model.beginModule(module.id)
+                                        }),
+                                    tag: module.id,
+                                    selection: $model.currentContentSelected,
+                                    label: {
                                         
-                                        // learning card
-                                        HomeViewRow(image: module.content.image, title: "Learn \(module.category)", description: module.content.description, lesson_question: "\(module.content.lessons.count) Lessons", time: module.content.time)
-                                    }
+                                        // Learning Card
+                                        HomeViewRow(image: module.content.image, title: "Learn \(module.category)", description: module.content.description, count: "\(module.content.lessons.count) Lessons", time: module.content.time)
+                                        
+                                    })
                                 
-                                // test card
-                                HomeViewRow(image: module.test.image, title: "\(module.category) Test", description: module.test.description, lesson_question: "\(module.test.questions.count) Questions", time: module.test.time)
+                                
+                                
+                                
+                                // Test Card
+                                HomeViewRow(image: module.test.image, title: "\(module.category) Test", description: module.test.description, count: "\(module.test.questions.count) Lessons", time: module.test.time)
                             }
                         }
+                        
                     }
                     .accentColor(.black)
-                    .padding(.all)
+                    .padding()
+                    
                 }
             }
             .navigationTitle("Get Started")
         }
+        .navigationViewStyle(.stack)
     }
 }
 
@@ -57,5 +67,3 @@ struct HomeView_Previews: PreviewProvider {
             .environmentObject(ContentModel())
     }
 }
-
-

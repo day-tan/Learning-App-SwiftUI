@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CodeTextView: UIViewRepresentable {
     
-    @EnvironmentObject var model:ContentModel
+    @EnvironmentObject var model: ContentModel
     
     func makeUIView(context: Context) -> UITextView {
         
@@ -19,14 +19,15 @@ struct CodeTextView: UIViewRepresentable {
         return textView
     }
     
-    func updateUIView(_ uiView: UITextView, context: Context) {
+    func updateUIView(_ textView: UITextView, context: Context) {
         
-        // set the attributed text for the lesson
-        uiView.attributedText = model.lessonDescription
+        // Set the attributed text for the lesson
+        textView.attributedText = model.lessonDescription
         
-        // scroll back to the top
-        uiView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: false)
+        // Scroll back to the top
+        textView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: false)
     }
+    
 }
 
 struct CodeTextView_Previews: PreviewProvider {

@@ -9,11 +9,11 @@ import SwiftUI
 
 struct HomeViewRow: View {
     
-    var image:String
-    var title:String
-    var description:String
-    var lesson_question:String
-    var time:String
+    var image: String
+    var title: String
+    var description: String
+    var count: String
+    var time: String
     
     var body: some View {
         
@@ -24,10 +24,11 @@ struct HomeViewRow: View {
                 .cornerRadius(10)
                 .shadow(radius: 5)
                 .aspectRatio(CGSize(width: 335, height: 175), contentMode: .fit)
+                
             
             HStack {
                 
-                // image
+                // Image
                 Image(image)
                     .resizable()
                     .frame(width: 116, height: 116)
@@ -35,48 +36,51 @@ struct HomeViewRow: View {
                 
                 Spacer()
                 
-                // text
-                VStack(alignment: .leading, spacing: 10.0) {
+                // Text
+                VStack (alignment: .leading, spacing: 10) {
                     
-                    // headline
+                    // Headline
                     Text(title)
-                        .fontWeight(.bold)
+                        .bold()
                     
-                    // description
+                    // Description
                     Text(description)
-                        .font(.caption)
-                        .multilineTextAlignment(.leading)
                         .padding(.bottom, 20)
+                        .font(.caption)
                     
-                    // icons
+                    // Icons
                     HStack {
                         
-                        // number of lessons/questions
+                        // Number of lessons/questions
                         Image(systemName: "text.book.closed")
                             .resizable()
                             .frame(width: 15, height: 15)
-                        Text(lesson_question)
+                        Text(count)
                             .font(Font.system(size: 10))
                         
                         Spacer()
                         
-                        // duration
+                        // Time
                         Image(systemName: "clock")
                             .resizable()
                             .frame(width: 15, height: 15)
                         Text(time)
                             .font(Font.system(size: 10))
+                        
                     }
                 }
                 .padding(.leading, 20)
             }
             .padding(.horizontal, 20)
+            
         }
+        
+        
     }
 }
 
 struct HomeViewRow_Previews: PreviewProvider {
     static var previews: some View {
-        HomeViewRow(image: "swift", title: "Learn Swift", description: "Some course description", lesson_question: "15 Lessons", time: "3 Hours")
+        HomeViewRow(image: "swift", title: "Learn Swift", description: "some description", count: "10 Lessons", time: "2 Hours")
     }
 }
