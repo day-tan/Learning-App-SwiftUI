@@ -38,7 +38,7 @@ struct ContentDetailView: View {
                 }, label: {
                     
                     ZStack {
-                    
+                        
                         RectangleCard(color: Color.green)
                             .frame(height:48)
                         
@@ -59,7 +59,7 @@ struct ContentDetailView: View {
                 }, label: {
                     
                     ZStack {
-                    
+                        
                         RectangleCard(color: Color.green)
                             .frame(height:48)
                         
@@ -70,8 +70,8 @@ struct ContentDetailView: View {
                 })
             }
         }
-            .padding()
-            .navigationBarTitle(lesson?.title ?? "")
+        .padding()
+        .navigationBarTitle(lesson?.title ?? "")
     }
 }
 
